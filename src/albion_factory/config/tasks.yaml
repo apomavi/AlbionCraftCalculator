@@ -1,0 +1,122 @@
+planning_task:
+  description: >
+    Kullanıcı isteğini oku:
+    {project_goal}
+
+    Sen lead'sin.
+    Sadece şu 3 şeyi çıkar:
+    1. Araştırma başlıkları
+    2. Kullanıcı onayı gereken kritik kararlar
+    3. Sıradaki tek görev
+
+    Kurallar:
+    - teknik çözüm uydurma
+    - implementasyona geçme
+    - genel konuşma yapma
+    - kısa ve net yaz
+  expected_output: >
+    Markdown formatında kısa lead raporu.
+    Bölümler:
+    - Research Headings
+    - Approval Needed
+    - Next Task
+  agent: lead
+  output_file: output/lead_report.md
+
+research_task:
+  description: >
+    Kullanıcı isteğini oku:
+    {project_goal}
+
+    Web araması yap.
+    Şu kaynak tiplerini araştır:
+    1. Resmi AODP sayfaları
+    2. İlgili GitHub repoları
+    3. Albion wiki / güvenilir referans sayfaları
+
+    Aşağıdaki veri sınıflarını AYRI AYRI çıkar:
+    1. Live Data Sources
+    2. Static Data Sources
+    3. Rule Tables
+    4. User Input Tables
+    5. Recipe Sources
+    6. Black Market Data Status
+    7. Minimum Viable Data Model
+    8. MVP Data Collection Plan
+
+    Özellikle şunları ara:
+    - AODP REST endpoints
+    - AODP NATS topics
+    - AODP dumps
+    - ao-bin-dumps repo ve içindeki ilgili dosyalar
+    - items / localization / craftingmodifiers benzeri static dosyalar
+    - city production bonuses
+    - focus sistemi
+    - premium craft focus bilgisi
+    - market setup fee / transaction tax
+    - taşıma için gereken veri alanları
+    - recipe verisinin hazır olup olmadığı
+
+    Kurallar:
+    - resmi kaynakları önce kullan
+    - repo varsa tam link ver
+    - uydurma endpoint yazma
+    - uydurma repo yazma
+    - her veri kaynağı için “ne işe yarar” yaz
+    - her veri için canlı/statik/kullanıcı girdisi etiketini yaz
+    - kısa ve net yaz
+  expected_output: >
+    Markdown formatında research raporu.
+    Bölümler:
+    - Source Inventory
+    - Live Data Sources
+    - Static Data Sources
+    - Rule Tables
+    - User Input Tables
+    - Recipe Sources
+    - Black Market Data Status
+    - Minimum Viable Data Model
+    - MVP Data Collection Plan
+    - Sources
+  agent: researcher
+  output_file: output/research_report.md
+
+validation_task:
+  description: >
+    research_report.md çıktısını doğrula.
+
+    Sen de web araması yap.
+    Sadece şu resmi kaynaklarla karşılaştır:
+    - https://www.albion-online-data.com/api/
+    - https://www.albion-online-data.com/developer
+    - https://www.albion-online-data.com/items
+    - https://www.albion-online-data.com/identifier
+
+    Şunları kontrol et:
+    1. Uydurma endpoint var mı?
+    2. NATS kısmı doğru mu?
+    3. Item mapping doğru mu?
+    4. Black Market kısmı kaynak dışı mı?
+    5. MVP kararı mantıklı mı?
+
+    Çıktı formatı:
+    - Verdict: PASS / PARTIAL / FAIL
+    - Correct Claims
+    - Wrong Claims
+    - Unverified Claims
+    - Required Fixes
+
+    Kurallar:
+    - nazik olma
+    - kaynak yoksa kabul etme
+    - kısa ve net yaz
+  expected_output: >
+    Markdown formatında validator raporu.
+    Bölümler:
+    - Verdict
+    - Correct Claims
+    - Wrong Claims
+    - Unverified Claims
+    - Required Fixes
+  agent: validator
+  output_file: output/validator_report.md
