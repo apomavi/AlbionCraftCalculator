@@ -55,11 +55,33 @@ def create_run_id(now: datetime | None = None) -> str:
     return candidate
 
 
+def normalize_csv_file(csv_path: Path, headers: Iterable[str]) -> None:
+    if not csv_path.exists() or csv_path.stat().st_size == 0:
+        return
+
+    header_line = ",".join(headers)
+    content = csv_path.read_text(encoding="utf-8")
+    normalized = content.replace("\r\n", "\n").replace("\r", "\n")
+
+    if normalized.startswith(header_line) and normalized != header_line:
+        remainder = normalized[len(header_line):]
+        if remainder and not remainder.startswith("\n"):
+            normalized = f"{header_line}\n{remainder}"
+
+    if normalized and not normalized.endswith("\n"):
+        normalized = f"{normalized}\n"
+
+    if normalized != content:
+        csv_path.write_text(normalized, encoding="utf-8", newline="\n")
+
+
 def append_csv_row(csv_path: Path, headers: Iterable[str], row: dict[str, str]) -> None:
     csv_path.parent.mkdir(parents=True, exist_ok=True)
+    header_list = list(headers)
+    normalize_csv_file(csv_path, header_list)
     file_exists = csv_path.exists()
     with csv_path.open("a", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(headers))
+        writer = csv.DictWriter(handle, fieldnames=header_list, lineterminator="\n")
         if not file_exists or csv_path.stat().st_size == 0:
             writer.writeheader()
         writer.writerow(row)

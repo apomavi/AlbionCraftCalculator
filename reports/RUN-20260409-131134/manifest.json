@@ -1,0 +1,13 @@
+{
+  "run_id": "RUN-20260409-131134",
+  "request_file": "requests/REQ-0001.md",
+  "started_at": "2026-04-09T10:11:34.289325",
+  "finished_at": "2026-04-09T10:11:57.676681",
+  "status": "success",
+  "copied_reports": [
+    "lead_report.md",
+    "research_report.md",
+    "validator_report.md"
+  ],
+  "result_preview": "- Verdict: PARTIAL\n\n- Correct Claims:\n    - Source Inventory listesi genel olarak doğru ve ilgili kaynakları içeriyor.\n    - Live Data Sources bölümünde AODP API'nin pazar ve eşya verileri için kullanılabileceği doğru.\n    - Static Data Sources bölümünde `ao-bin-dumps`'ın eşya tanımları ve temel tarif yapısı için kullanıldığı doğru.\n    - Rule Tables başlığı altında şehir bonusları, pazar ücretleri, focus ve premium etkilerinin statik veri olarak sınıflandırılması doğru.\n    - User Input Tables başlığı altında oyuncu bilgileri, mevcut kaynaklar, hedeflenen eşya ve focus miktarının kullanıcı girdisi olarak alınması gerektiği doğru.\n    - Recipe Sources bölümünde hem AODP API'nin canlı veriler hem de `ao-bin-dumps`'ın statik yapı için kullanılabileceği doğru.\n    - Black Market Data Status bölümünde resmi veri kaynağı olmadığı ve dolaylı/manuel erişim gerektiği tespiti doğru.\n    - Minimum Viable Data Model'deki tablolar (Items, Recipes, CityMarketPrices, CityBonuses, MarketFees, PlayerInfo) MVP için uygun görünüyor.\n    - MVP Data Collection Plan'deki adımlar genel olarak mantıklı ve kaynakları doğru kullanıyor.\n    - Kaynaklar listesi (AODP API, ao-bin-dumps, Albion Wiki) doğru ve linkleri mevcut.\n\n- Wrong Claims:\n    - **Live Data Sources - Item Data:** \"Eşyaların güncel statları, seviyeleri, ağırlıkları.\" olarak belirtilmiş. Ağırlık (`weight`) gibi bazı temel eşya özellikleri `ao-bin-dumps` gibi statik kaynaklarda bulunur ve oyun güncellemeleriyle sık değişmez. Bu, \"Canlı/S"
+}

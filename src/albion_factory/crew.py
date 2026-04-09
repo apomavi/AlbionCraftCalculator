@@ -34,7 +34,6 @@ class AlbionFactory:
         return Agent(
             config=self.agents_config["validator"],  # type: ignore[index]
             verbose=True,
-            tools=[SerperDevTool()],
         )
 
     @task

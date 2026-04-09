@@ -29,12 +29,12 @@ research_task:
     {project_goal}
 
     Web araması yap.
-    Şu kaynak tiplerini araştır:
+    Öncelik sırası:
     1. Resmi AODP sayfaları
     2. İlgili GitHub repoları
-    3. Albion wiki / güvenilir referans sayfaları
+    3. Albion wiki / güvenilir referanslar
 
-    Aşağıdaki veri sınıflarını AYRI AYRI çıkar:
+    Şu bölümleri üret:
     1. Live Data Sources
     2. Static Data Sources
     3. Rule Tables
@@ -44,18 +44,11 @@ research_task:
     7. Minimum Viable Data Model
     8. MVP Data Collection Plan
 
-    Özellikle şunları ara:
-    - AODP REST endpoints
-    - AODP NATS topics
-    - AODP dumps
-    - ao-bin-dumps repo ve içindeki ilgili dosyalar
-    - items / localization / craftingmodifiers benzeri static dosyalar
-    - city production bonuses
-    - focus sistemi
-    - premium craft focus bilgisi
-    - market setup fee / transaction tax
-    - taşıma için gereken veri alanları
-    - recipe verisinin hazır olup olmadığı
+    Özellikle kontrol et:
+    - AODP REST / NATS / dumps
+    - ao-bin-dumps ve ilgili statik dosyalar
+    - city bonuses, focus, premium, market fee-tax
+    - taşıma alanları ve recipe hazır veri durumu
 
     Kurallar:
     - resmi kaynakları önce kullan
@@ -64,6 +57,7 @@ research_task:
     - uydurma repo yazma
     - her veri kaynağı için “ne işe yarar” yaz
     - her veri için canlı/statik/kullanıcı girdisi etiketini yaz
+    - bölüm başına en fazla 3-5 madde yaz
     - kısa ve net yaz
   expected_output: >
     Markdown formatında research raporu.
@@ -83,14 +77,9 @@ research_task:
 
 validation_task:
   description: >
-    research_report.md çıktısını doğrula.
-
-    Sen de web araması yap.
-    Sadece şu resmi kaynaklarla karşılaştır:
-    - https://www.albion-online-data.com/api/
-    - https://www.albion-online-data.com/developer
-    - https://www.albion-online-data.com/items
-    - https://www.albion-online-data.com/identifier
+    Researcher çıktısını doğrula.
+    Önce context içindeki araştırma çıktısına bak.
+    Sadece açıkça yanlış, uydurma veya kaynaksız iddiaları işaretle.
 
     Şunları kontrol et:
     1. Uydurma endpoint var mı?
@@ -109,6 +98,7 @@ validation_task:
     Kurallar:
     - nazik olma
     - kaynak yoksa kabul etme
+    - kısa çalış
     - kısa ve net yaz
   expected_output: >
     Markdown formatında validator raporu.
