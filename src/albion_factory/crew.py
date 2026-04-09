@@ -17,14 +17,14 @@ class AlbionFactory:
     @agent
     def lead(self) -> Agent:
         return Agent(
-            config=self.agents_config["lead"],
+            config=self.agents_config["lead"],  # type: ignore[index]
             verbose=True,
         )
 
     @agent
     def researcher(self) -> Agent:
         return Agent(
-            config=self.agents_config["researcher"],
+            config=self.agents_config["researcher"],  # type: ignore[index]
             verbose=True,
             tools=[SerperDevTool()],
         )
@@ -32,7 +32,7 @@ class AlbionFactory:
     @agent
     def validator(self) -> Agent:
         return Agent(
-            config=self.agents_config["validator"],
+            config=self.agents_config["validator"],  # type: ignore[index]
             verbose=True,
             tools=[SerperDevTool()],
         )
@@ -40,19 +40,21 @@ class AlbionFactory:
     @task
     def planning_task(self) -> Task:
         return Task(
-            config=self.tasks_config["planning_task"]
+            config=self.tasks_config["planning_task"]  # type: ignore[index]
         )
 
     @task
     def research_task(self) -> Task:
         return Task(
-            config=self.tasks_config["research_task"]
+            config=self.tasks_config["research_task"],  # type: ignore[index]
+            context=[self.planning_task()],
         )
 
     @task
     def validation_task(self) -> Task:
         return Task(
-            config=self.tasks_config["validation_task"]
+            config=self.tasks_config["validation_task"],  # type: ignore[index]
+            context=[self.research_task()],
         )
 
     @crew

@@ -1,3 +1,30 @@
 .env
 __pycache__/
 .DS_Store
+
+# Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+dist/
+build/
+*.pyc
+
+# Local environment
+.venv/
+
+# Runtime outputs
+output/
+
+# Data lake payloads (append-only, local only)
+data/raw/
+data/processed/
+
+# Local runner / machine files
+actions-runner/_work/
+actions-runner/_diag/
+actions-runner/.credentials
+actions-runner/.credentials_rsaparams
+actions-runner/.runner
+actions-runner/.service
