@@ -1,0 +1,155 @@
+{
+  "report_dir": "reports/AGENT-PROBE-20260410-125211",
+  "total_agents": 9,
+  "average_score": 98.56,
+  "weak_agents": [],
+  "needs_review_agents": [],
+  "good_agents": [
+    "factory/coder",
+    "factory/lead_manager",
+    "factory/researcher",
+    "factory/tester",
+    "factory/validator",
+    "ops/lead_manager",
+    "report/lead",
+    "report/researcher",
+    "report/validator"
+  ],
+  "items": [
+    {
+      "crew": "factory",
+      "agent": "coder",
+      "score": 100,
+      "verdict": "GOOD",
+      "breakdown": {
+        "execution": 35,
+        "relevance": 40,
+        "structure": 15,
+        "clarity": 15,
+        "penalty": 0
+      },
+      "notes": [],
+      "raw_output_preview": "{\n  \"name\": \"_chat\",\n  \"arguments\": {\n    \"message\": \"Kısa test için sadece yeni satır düzeltmeleri (örneğin CSV dosyalarında) veya metin dosyasından içerik okuma gibi küçük güvenli değişiklikler yapabilirim. Gereksiz refactor veya kompleks işlemler yapmam.\"\n  }\n}"
+    },
+    {
+      "crew": "factory",
+      "agent": "lead_manager",
+      "score": 100,
+      "verdict": "GOOD",
+      "breakdown": {
+        "execution": 35,
+        "relevance": 40,
+        "structure": 15,
+        "clarity": 15,
+        "penalty": 0
+      },
+      "notes": [],
+      "raw_output_preview": "Scope:\n- New line normalization within the `data/logs/import_runs.csv` file.\n- Ensure that the file format is consistent across different platforms.\n\nSuccess Criteria:\n- The new line characters in the CSV file should be normalized to a single, consistent newline character format (e.g., Unix-style LF `\\n`).\n- No additional or missing data entries due to the normalization process.\n- The file opens and reads correctly in any standard text editor and CSV application without format issues.\n\nNext Step"
+    },
+    {
+      "crew": "factory",
+      "agent": "researcher",
+      "score": 98,
+      "verdict": "GOOD",
+      "breakdown": {
+        "execution": 35,
+        "relevance": 40,
+        "structure": 8,
+        "clarity": 15,
+        "penalty": 0
+      },
+      "notes": [],
+      "raw_output_preview": "The CSV file indicates issues with incomplete processing and pending normalization tasks. To fix these, ensure full data completion and automate any necessary post-import processing steps based on the notes provided."
+    },
+    {
+      "crew": "factory",
+      "agent": "tester",
+      "score": 100,
+      "verdict": "GOOD",
+      "breakdown": {
+        "execution": 35,
+        "relevance": 40,
+        "structure": 15,
+        "clarity": 15,
+        "penalty": 0
+      },
+      "notes": [],
+      "raw_output_preview": "CSV newline yapısını test etmek için şu adımları izleyebilirim:\n\n1. csv_structure kontrolü: verify_csv_structure fonksiyonunu kullanarak, belirli bir CSV dosyasının düzgün olarak parse edilebilir ve header satırı diğer satırlardan ayrılır.\n2. read_repo_file kullanımı: read_repo_file fonksiyonu ile CSV dosyasını okuyup içeriğini kontrol etmek için dosyanın başlangıcını ve sonunu inceleyebilirim.\n3. beklenen yeni satır karakterlerini arama: Csv içeriğinin belirli bir yeni satır karakterine (örneği"
+    },
+    {
+      "crew": "factory",
+      "agent": "validator",
+      "score": 91,
+      "verdict": "GOOD",
+      "breakdown": {
+        "execution": 35,
+        "relevance": 40,
+        "structure": 8,
+        "clarity": 8,
+        "penalty": 0
+      },
+      "notes": [],
+      "raw_output_preview": "{\n  \"name\": \"verify_csv_structure\",\n  \"arguments\": {\n    \"path\": \"data/input.csv\"\n  }\n}"
+    },
+    {
+      "crew": "ops",
+      "agent": "lead_manager",
+      "score": 100,
+      "verdict": "GOOD",
+      "breakdown": {
+        "execution": 35,
+        "relevance": 40,
+        "structure": 15,
+        "clarity": 15,
+        "penalty": 0
+      },
+      "notes": [],
+      "raw_output_preview": "Operasyon Planı:\n\n1. **İsteği Anlama ve Sınıflandırma**: \n   - İstek detayları gözden geçirilir.\n   - Testin kapsamı, hedef branch, gereken kaynaklar ve beklenen sonuçlar belirlenir.\n\n2. **Alt Ajanları Yönlendirme**:\n   - Gerekli teknik araçlar (örneğin, Git, Python betikleri) kullanılarak repo doğrulama işlemlerine başlanır.\n   - Öncelikle, hangi dosyaların test edilecekleri belirlenir ve bu listeye uygun bir script veya betik oluşturulur.\n\n3. **Sonuçların Analizi ve İletimi**:\n   - Tüm testler"
+    },
+    {
+      "crew": "report",
+      "agent": "lead",
+      "score": 100,
+      "verdict": "GOOD",
+      "breakdown": {
+        "execution": 35,
+        "relevance": 40,
+        "structure": 15,
+        "clarity": 15,
+        "penalty": 0
+      },
+      "notes": [],
+      "raw_output_preview": "1. Albion factory'yi hedef alan bir data pipeline oluştur.\n2. Data pipeline'u destekleyen bir research doğrulama sistemi geliştir.\n3. Sistemlerin performansını ölçmek ve optimize etmek için düzenli testleri yürüt."
+    },
+    {
+      "crew": "report",
+      "agent": "researcher",
+      "score": 98,
+      "verdict": "GOOD",
+      "breakdown": {
+        "execution": 35,
+        "relevance": 40,
+        "structure": 8,
+        "clarity": 15,
+        "penalty": 0
+      },
+      "notes": [],
+      "raw_output_preview": "Albion Online Data Project resmi price verisi için şu kaynaklar kullanılabilir:\n1. https://albiononline-data.com/  \n   Bu site üzerinden REST API kullanarak anlık market ve altın verilerini programlı şekilde sorgulayabilirsiniz.\n2. https://www.albionfreemarket.com/pricecheck  \n   Yerleşik akış işlevini kullanarak Amerika, Avrupa ve Asya sunucularında tüm Albion Market fiyatlarını karşılaştırabiliriz.\n\nBu kaynaklar, Albion Online Data Project'te resmi olarak sağlanan verilere erişim sağlar."
+    },
+    {
+      "crew": "report",
+      "agent": "validator",
+      "score": 100,
+      "verdict": "GOOD",
+      "breakdown": {
+        "execution": 35,
+        "relevance": 40,
+        "structure": 15,
+        "clarity": 15,
+        "penalty": 0
+      },
+      "notes": [],
+      "raw_output_preview": "Verdict: PARTIAL  \nCorrect Claims: AODP (en azından bir kısmı) resmi ve canlı price endpointi sunar.  \nWrong Claims: Bilinmeyen veya doğrulanamayan noktalar.  \nUnverified Claims: Endpointlerin tam olarak neyi ve nasıl sunduğunu içermiyor.  \nRequired Fixes: Endpointlerin daha ayrıntılı açıklaması ve örnekler sağlanması gerekiyor."
+    }
+  ]
+}

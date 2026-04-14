@@ -1,0 +1,10 @@
+{
+  "crew": "factory",
+  "agent": "coder",
+  "status": "success",
+  "started_at": "2026-04-10T22:23:12.540389+00:00",
+  "finished_at": "2026-04-10T22:23:19.249978+00:00",
+  "prompt": "Kısa test. Küçük güvenli bir CSV newline düzeltmesi için nasıl ilerleyeceğini söyle. Mutlaka şu başlıklarla cevap ver: Target Files, Planned Changes, Applied Changes, Remaining Risks.",
+  "raw_output": "{\n  \"Target Files\": {\n    \"file_path\": \"data.csv\"\n  },\n  \"Planned Changes\": {\n    \"action\": \"normalize_csv_newlines\",\n    \"description\": \"Repair merged CSV header/row newline issues in the specified file.\"\n  },\n  \"Applied Changes\": [],\n  \"Remaining Risks\": {\n    \"potential_issues\": [\"No backup of the original file before modification\"]\n  }\n}",
+  "error": ""
+}

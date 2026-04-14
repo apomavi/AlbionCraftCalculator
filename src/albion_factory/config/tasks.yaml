@@ -1,112 +1,170 @@
 planning_task:
   description: >
-    Kullanıcı isteğini oku:
+    Read the user request:
     {project_goal}
 
-    Sen lead'sin.
-    Sadece şu 3 şeyi çıkar:
-    1. Araştırma başlıkları
-    2. Kullanıcı onayı gereken kritik kararlar
-    3. Sıradaki tek görev
+    You are the lead.
+    Your team: researcher, coder, tester, validator.
+    Break the work into small phases and select the correct agents.
+    CRITICAL: You MUST write your final response in Turkish.
 
-    Kurallar:
-    - teknik çözüm uydurma
-    - implementasyona geçme
-    - genel konuşma yapma
-    - kısa ve net yaz
+    Produce:
+    - Scope
+    - Required Agents
+    - Constraints
+    - Success Criteria
+    - Next Task
+    Final answer must be markdown; do not leave tool-call JSON.
   expected_output: >
-    Markdown formatında kısa lead raporu.
-    Bölümler:
-    - Research Headings
-    - Approval Needed
+    A concise lead plan in Markdown format, written in Turkish.
+    Sections:
+    - Scope
+    - Required Agents
+    - Constraints
+    - Success Criteria
     - Next Task
   agent: lead
   output_file: output/lead_report.md
 
 research_task:
   description: >
-    Kullanıcı isteğini oku:
+    Read the user request:
     {project_goal}
 
-    Web araması yap.
-    Öncelik sırası:
-    1. Resmi AODP sayfaları
-    2. İlgili GitHub repoları
-    3. Albion wiki / güvenilir referanslar
+    Gather repository context, domain rules, and mathematical constraints.
+    Produce concise but concrete research so the coder can implement it.
 
-    Şu bölümleri üret:
-    1. Live Data Sources
-    2. Static Data Sources
-    3. Rule Tables
-    4. User Input Tables
-    5. Recipe Sources
-    6. Black Market Data Status
-    7. Minimum Viable Data Model
-    8. MVP Data Collection Plan
-
-    Özellikle kontrol et:
-    - AODP REST / NATS / dumps
-    - ao-bin-dumps ve ilgili statik dosyalar
-    - city bonuses, focus, premium, market fee-tax
-    - taşıma alanları ve recipe hazır veri durumu
-
-    Kurallar:
-    - resmi kaynakları önce kullan
-    - repo varsa tam link ver
-    - uydurma endpoint yazma
-    - uydurma repo yazma
-    - her veri kaynağı için “ne işe yarar” yaz
-    - her veri için canlı/statik/kullanıcı girdisi etiketini yaz
-    - bölüm başına en fazla 3-5 madde yaz
-    - kısa ve net yaz
-  expected_output: >
-    Markdown formatında research raporu.
-    Bölümler:
+    Produce:
     - Source Inventory
-    - Live Data Sources
-    - Static Data Sources
-    - Rule Tables
-    - User Input Tables
-    - Recipe Sources
-    - Black Market Data Status
-    - Minimum Viable Data Model
-    - MVP Data Collection Plan
+    - Findings
+    - Constraints
+    - Implementation Notes
+    - Sources
+    Use tools if necessary, but do not leave tool-call JSON in the final answer.
+    The final answer must be human-readable markdown.
+  expected_output: >
+    Research report in Markdown format.
+    Sections:
+    - Source Inventory
+    - Findings
+    - Constraints
+    - Implementation Notes
     - Sources
   agent: researcher
   output_file: output/research_report.md
 
+data_collection_task:
+  description: >
+    Read the user request and researcher output:
+    {project_goal}
+
+    Use your tools to fetch necessary raw data from the web or APIs.
+    If the data is large, save it to the data/ directory, otherwise summarize it.
+    If the task requires no external data (e.g. pure code updates), simply summarize the required data structures and DO NOT use fetch tools.
+
+    Produce:
+    - Target Data
+    - Collected Data
+    - Normalization Notes
+    Final answer must always be Markdown, never leave tool-call JSON.
+  expected_output: >
+    Data collector report in Markdown format.
+    Sections:
+    - Target Data
+    - Collected Data
+    - Normalization Notes
+  agent: data_collector
+  output_file: output/data_collection_report.md
+
+code_task:
+  description: >
+    Read the user request:
+    {project_goal}
+
+    Use the researcher's output.
+    Perform the actual implementation.
+    Create/update necessary files.
+    If no changes are needed in the target file, state this clearly as a blocker.
+    CRITICAL: It is strictly forbidden to just output a markdown code block. You MUST trigger the write_repo_file tool to write the code physically.
+    IMPORTANT: You MUST read the target file with read_repo_file BEFORE making changes. Do NOT assume the file already contains the code from previous reports.
+
+    Produce:
+    - Target Files
+    - Planned Changes
+    - Applied Changes
+    - Remaining Risks
+    Even if you use tools, only write interpreted results in the final answer.
+    Never end with tool-call JSON.
+  expected_output: >
+    Coder output in Markdown format.
+    Sections:
+    - Target Files
+    - Planned Changes
+    - Applied Changes
+    - Remaining Risks
+  agent: coder
+  output_file: output/code_report.md
+
+test_task:
+  description: >
+    Read the user request:
+    {project_goal}
+
+    Test the coder's output aggressively.
+    Run tests (e.g., `pytest`). If no tests exist, write a quick test script and run it. Hunt for logical bugs, edge cases, and zero-division errors.
+    If the code fails, report the exact traceback and bug.
+    Do not trust the coder. Verify the logic by executing it.
+
+    Produce:
+    - Commands
+    - Evidence
+    - Findings
+    - Verdict
+    If you make a tool call, interpret its result.
+    The final answer MUST NOT contain any tool objects or function calls in JSON format.
+    Provide only a markdown test summary in the final answer; do not leave tool-call JSON.
+    If you leave raw tool-call JSON in the final answer, it counts as an automatic failure.
+    Never end your answer with a "```json" block.
+  expected_output: >
+    Test report in Markdown format.
+    Sections:
+    - Commands
+    - Evidence
+    - Findings
+    - Verdict
+  agent: tester
+  output_file: output/test_report.md
+
 validation_task:
   description: >
-    Researcher çıktısını doğrula.
-    Önce context içindeki araştırma çıktısına bak.
-    Sadece açıkça yanlış, uydurma veya kaynaksız iddiaları işaretle.
+    Evaluate the outputs of lead, researcher, data collector, coder, and tester together.
+    Act as the final quality gate.
 
-    Şunları kontrol et:
-    1. Uydurma endpoint var mı?
-    2. NATS kısmı doğru mu?
-    3. Item mapping doğru mu?
-    4. Black Market kısmı kaynak dışı mı?
-    5. MVP kararı mantıklı mı?
-
-    Çıktı formatı:
-    - Verdict: PASS / PARTIAL / FAIL
-    - Correct Claims
-    - Wrong Claims
-    - Unverified Claims
-    - Required Fixes
-
-    Kurallar:
-    - nazik olma
-    - kaynak yoksa kabul etme
-    - kısa çalış
-    - kısa ve net yaz
-  expected_output: >
-    Markdown formatında validator raporu.
-    Bölümler:
+    Produce:
     - Verdict
-    - Correct Claims
-    - Wrong Claims
-    - Unverified Claims
+    - Evidence Used
+    - Risks
     - Required Fixes
+    - Feedback Target
+    - Feedback Reason
+    - Commit Ready
+    The final answer must be only a markdown validator summary.
+    Do not end with tool-call JSON.
+    Feedback Target must be exactly one of the following values:
+    - researcher
+    - data_collector
+    - coder
+    - tester
+    - none
+  expected_output: >
+    Validator report in Markdown format.
+    Sections:
+    - Verdict
+    - Evidence Used
+    - Risks
+    - Required Fixes
+    - Feedback Target
+    - Feedback Reason
+    - Commit Ready
   agent: validator
   output_file: output/validator_report.md

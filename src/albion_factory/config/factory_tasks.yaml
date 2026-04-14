@@ -1,0 +1,105 @@
+lead_task:
+  description: >
+    İstek: {factory_request}
+
+    Hedef dosya: {target_file}
+
+    Kullanabileceğin ekip:
+    - researcher: hedef dosyayı inceler, mevcut sorunu ve minimal fix yaklaşımını çıkarır
+    - coder: küçük ve güvenli değişikliği uygular
+    - tester: teknik kanıt ve verdict üretir
+    - validator: commit-ready kararı verir
+
+    Sadece şunları üret:
+    1. Scope
+    2. Required Agents
+    3. Constraints
+    4. Success Criteria
+    5. Next Step
+
+    Kısa yaz.
+  expected_output: >
+    Kısa markdown planı.
+    Zorunlu başlıklar:
+    - Scope
+    - Required Agents
+    - Constraints
+    - Success Criteria
+    - Next Step
+
+research_task:
+  description: >
+    İstek: {factory_request}
+    Hedef dosya: {target_file}
+
+    Hedef dosyanın mevcut içeriğini incele.
+    Sorunu kısa ve teknik olarak açıkla.
+
+    Sadece şunları üret:
+    - Current Issue
+    - Root Cause
+    - Minimal Fix
+  expected_output: >
+    Kısa markdown araştırma çıktısı.
+    Zorunlu başlıklar:
+    - Current Issue
+    - Root Cause
+    - Constraints
+    - Minimal Fix
+
+code_task:
+  description: >
+    İstek: {factory_request}
+    Hedef dosya: {target_file}
+
+    Mevcut sorunu çözmek için uygun tool'u kullan.
+    Minimum değişiklik yap.
+    Başka dosyaya yayılma.
+
+    Çıktı:
+    - Action Taken
+    - Target File
+    - Result
+  expected_output: >
+    Kısa markdown kodlama çıktısı.
+    Zorunlu başlıklar:
+    - Target Files
+    - Planned Changes
+    - Applied Changes
+    - Remaining Risks
+
+test_task:
+  description: >
+    Hedef dosya: {target_file}
+
+    Dosyanın CSV newline yapısını test et.
+    Sonucu PASS veya FAIL olarak ver.
+
+    Çıktı:
+    - Test Result
+    - Findings
+  expected_output: >
+    Kısa markdown test çıktısı.
+    Zorunlu başlıklar:
+    - Test Steps
+    - Findings
+    - Evidence
+    - Verdict
+
+validation_task:
+  description: >
+    İstek: {factory_request}
+    Hedef dosya: {target_file}
+
+    Test çıktısını ve dosya durumunu birlikte değerlendir.
+    Sonuç formatı:
+    - Verdict: PASS / FAIL
+    - Reason
+    - Commit Ready: YES / NO
+  expected_output: >
+    Kısa markdown validator çıktısı.
+    Zorunlu başlıklar:
+    - Verdict
+    - Reason
+    - Commit Ready
+    - Required Fixes

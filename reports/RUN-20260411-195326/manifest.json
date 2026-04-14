@@ -1,0 +1,10 @@
+{
+  "run_id": "RUN-20260411-195326",
+  "request_file": "requests/REQ-0005.md",
+  "target_file": "src/albion_factory/craftcalc/models.py",
+  "started_at": "2026-04-11T16:53:26.076890+00:00",
+  "finished_at": "2026-04-11T16:57:06.422021+00:00",
+  "status": "success",
+  "result_preview": "```json\n{\n  \"name\": \"verify_text_structure\",\n  \"arguments\": {\n    \"path\": \"src/albion_factory/craftcalc/models.py\",\n    \"required_terms\": [\n      \"Item\", \"Recipe\", \"Price\", \"Rule\", \"CalculationRequest\", \"CalculationResult\"\n    ]\n  }\n}\n```",
+  "runner": "scripts/run_request_phase.py"
+}

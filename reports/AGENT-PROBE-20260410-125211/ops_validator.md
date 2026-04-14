@@ -1,0 +1,27 @@
+# Agent Probe - ops_validator
+
+## crew
+ops
+
+## agent
+validator
+
+## status
+success
+
+## started_at
+2026-04-10T15:15:40.525306+00:00
+
+## finished_at
+2026-04-10T15:15:49.484196+00:00
+
+## prompt
+Kısa test. Research/data/test çıktılarını nasıl PASS/PARTIAL/FAIL değerlendirirsin? Mutlaka şu başlıklarla cevap ver: Verdict, Evidence Used, Risks, Required Fixes.
+
+## raw_output
+Verdict: ?
+Evidence Used: Yok.
+Risks: Testlerin çalışıp çalışmadığı belirsizdir; çünkü Evaluation Context'de neyin test edildiğini ve gerekli kanıtın sağlanıp sağlanmadığını öğrenemiyorum.
+Required Fixes: Evaluation Context’ta hangi kodun veya işlevin sonuçlarını değerlendirmem için detaylı bilgilere ihtiyaç duyarım. Lütfen sadece belitlenen başlıkları koruyarak ve gözlemleri, çıktıları ve kanıtları sağlayarak yeniden deneyin.
+
+## error

@@ -1,0 +1,1 @@
+The `src/albion_factory/craftcalc/models.py` file contains the required models and fields as specified in the project goal.

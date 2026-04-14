@@ -1,0 +1,10 @@
+{
+  "run_id": "RUN-20260411-102847",
+  "request_file": "requests/REQ-0005.md",
+  "target_file": "src/albion_factory/craftcalc/models.py",
+  "started_at": "2026-04-11T07:28:47.116276+00:00",
+  "finished_at": "2026-04-11T07:30:11.524924+00:00",
+  "status": "success",
+  "result": "```json\n{\n  \"Target Files\": [\"src/albion_factory/craftcalc/models.py\"],\n  \"Planned Changes\": [\"Inspect the target file\", \"Normalize CSV newlines in the target file\"],\n  \"Applied Changes\": [],\n  \"Remaining Risks\": [\"Potential issues with file inspection or normalization\"]\n}\n```",
+  "runner": "scripts/run_request_phase.py"
+}

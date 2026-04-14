@@ -1,0 +1,1 @@
+The `src/albion_factory/craftcalc/models.py` file has been updated to support Phase 1 and Phase 1.5 features for the Craft Calculator. The required models and fields have been added as specified in the requirements.

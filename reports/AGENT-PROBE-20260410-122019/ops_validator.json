@@ -1,0 +1,10 @@
+{
+  "crew": "ops",
+  "agent": "validator",
+  "status": "success",
+  "started_at": "2026-04-10T12:23:39.692112+00:00",
+  "finished_at": "2026-04-10T12:23:42.663041+00:00",
+  "prompt": "Kısa test. Research/data/test çıktılarını nasıl PASS/PARTIAL/FAIL değerlendirirsin?",
+  "raw_output": "{\n  \"name\": \"\",\n  \"arguments\": {}\n}",
+  "error": ""
+}

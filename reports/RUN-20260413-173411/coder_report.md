@@ -1,0 +1,1 @@
+The `src/albion_factory/craftcalc/models.py` file has been successfully updated with the new models and fields as specified.

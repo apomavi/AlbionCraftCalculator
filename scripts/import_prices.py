@@ -14,12 +14,15 @@ Not:
 from __future__ import annotations
 
 import argparse
-import csv
 import json
+import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import urlopen
+
+from albion_factory.db import build_postgres_dsn, is_postgres_primary
+from albion_factory.log_writer import append_data_change, append_import_run
 
 
 AODP_BASE_URL = "https://www.albion-online-data.com"
@@ -33,16 +36,6 @@ def utc_now() -> str:
 
 def build_import_id(prefix: str) -> str:
     return datetime.now(UTC).strftime(f"IMPORT-{prefix}-%Y%m%d-%H%M%S")
-
-
-def append_csv_row(csv_path: Path, headers: list[str], row: dict[str, str]) -> None:
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-    exists = csv_path.exists() and csv_path.stat().st_size > 0
-    with csv_path.open("a", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=headers, lineterminator="\n")
-        if not exists:
-            writer.writeheader()
-        writer.writerow(row)
 
 
 def write_json(path: Path, payload: dict) -> None:
@@ -91,6 +84,8 @@ def persist_live_payload(dataset_name: str, source_url: str, payload_text: str) 
         "source_url": source_url,
         "raw_path": str(raw_path).replace("\\", "/"),
         "processed_path": None,
+        "db_target": "postgres" if is_postgres_primary() else "sqlite",
+        "postgres_dsn": build_postgres_dsn() if is_postgres_primary() else None,
         "status": "raw_collected",
         "notes": "Live importer iskeleti hazır. Normalization ve DB upsert sonraki adımda eklenecek.",
         "started_at": started_at,
@@ -98,20 +93,8 @@ def persist_live_payload(dataset_name: str, source_url: str, payload_text: str) 
     }
     write_json(Path("data/manifests") / f"{import_id}.json", manifest)
 
-    append_csv_row(
+    append_import_run(
         Path("data/logs/import_runs.csv"),
-        [
-            "import_id",
-            "source_name",
-            "dataset_name",
-            "action",
-            "status",
-            "raw_path",
-            "processed_path",
-            "started_at",
-            "finished_at",
-            "notes",
-        ],
         {
             "import_id": import_id,
             "source_name": source_url,
@@ -123,6 +106,18 @@ def persist_live_payload(dataset_name: str, source_url: str, payload_text: str) 
             "started_at": started_at,
             "finished_at": finished_at,
             "notes": "Normalization henüz uygulanmadı.",
+        },
+    )
+    append_data_change(
+        Path("data/logs/data_changes.csv"),
+        {
+            "change_id": f"CHANGE-{uuid.uuid4().hex[:12]}",
+            "dataset_name": dataset_name,
+            "change_type": "snapshot_created",
+            "record_count": "0",
+            "reason": "Live skeleton import initialized",
+            "source_run_id": import_id,
+            "timestamp": finished_at,
         },
     )
     return manifest

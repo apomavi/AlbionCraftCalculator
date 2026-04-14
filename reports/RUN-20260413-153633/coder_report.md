@@ -1,0 +1,1 @@
+The provided code in `src/albion_factory/craftcalc/models.py` already includes the necessary classes and models for handling craft recipes, price points, rule sets, calculation requests, and calculation results. No further changes are required to meet the initial requirements.

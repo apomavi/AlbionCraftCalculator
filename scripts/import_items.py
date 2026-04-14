@@ -9,10 +9,13 @@ Amaç:
 from __future__ import annotations
 
 import argparse
-import csv
 import json
+import uuid
 from datetime import UTC, datetime
 from pathlib import Path
+
+from albion_factory.db import build_postgres_dsn, is_postgres_primary
+from albion_factory.log_writer import append_data_change, append_import_run
 
 
 DATASET_NAME = "items_static"
@@ -24,16 +27,6 @@ def utc_now() -> str:
 
 def build_import_id() -> str:
     return datetime.now(UTC).strftime("IMPORT-ITEMS-%Y%m%d-%H%M%S")
-
-
-def append_csv_row(csv_path: Path, headers: list[str], row: dict[str, str]) -> None:
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-    exists = csv_path.exists() and csv_path.stat().st_size > 0
-    with csv_path.open("a", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=headers, lineterminator="\n")
-        if not exists:
-            writer.writeheader()
-        writer.writerow(row)
 
 
 def write_json(path: Path, payload: dict) -> None:
@@ -59,6 +52,8 @@ def run_import(source_path: Path, dataset_name: str = DATASET_NAME) -> dict:
         "source_path": str(source_path).replace("\\", "/"),
         "raw_path": str(copied_source).replace("\\", "/"),
         "processed_path": None,
+        "db_target": "postgres" if is_postgres_primary() else "sqlite",
+        "postgres_dsn": build_postgres_dsn() if is_postgres_primary() else None,
         "status": "skeleton_only",
         "notes": "Static importer iskeleti hazır. DB upsert katmanı sonraki adımda eklenecek.",
         "started_at": started_at,
@@ -66,20 +61,8 @@ def run_import(source_path: Path, dataset_name: str = DATASET_NAME) -> dict:
     }
     write_json(manifest_path, manifest)
 
-    append_csv_row(
+    append_import_run(
         Path("data/logs/import_runs.csv"),
-        [
-            "import_id",
-            "source_name",
-            "dataset_name",
-            "action",
-            "status",
-            "raw_path",
-            "processed_path",
-            "started_at",
-            "finished_at",
-            "notes",
-        ],
         {
             "import_id": import_id,
             "source_name": source_path.name,
@@ -91,6 +74,18 @@ def run_import(source_path: Path, dataset_name: str = DATASET_NAME) -> dict:
             "started_at": started_at,
             "finished_at": finished_at,
             "notes": "DB import iskeleti henüz uygulanmadı.",
+        },
+    )
+    append_data_change(
+        Path("data/logs/data_changes.csv"),
+        {
+            "change_id": f"CHANGE-{uuid.uuid4().hex[:12]}",
+            "dataset_name": dataset_name,
+            "change_type": "snapshot_created",
+            "record_count": "0",
+            "reason": "Static skeleton import initialized",
+            "source_run_id": import_id,
+            "timestamp": finished_at,
         },
     )
     return manifest

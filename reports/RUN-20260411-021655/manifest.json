@@ -1,0 +1,13 @@
+{
+  "run_id": "RUN-20260411-021655",
+  "request_file": "requests/REQ-0007.md",
+  "started_at": "2026-04-10T23:16:55.281069",
+  "finished_at": "2026-04-10T23:19:14.930449",
+  "status": "success",
+  "copied_reports": [
+    "lead_report.md",
+    "research_report.md",
+    "validator_report.md"
+  ],
+  "result_preview": "Verdict: PARTIAL\n\nCorrect Claims:\n- **Live Data Sources**: AODP REST API (Current Price) ve Albion Online Official Tracker (Fallback Price) doğru olarak belirlenmiştir.\n  \nUnverified Claims:\n- **Static Data Sources**: ao-bin-dumps GitHub Repository ve Albion Wiki Transportation Zones'ın güncel olup olmaması kontrol edilmemiştir.\n- **User Preferences for Price Representation** ve **Filter Options via Transportation Zones** kullanıcı odaklı seçimleri doğru olarak belirlenmiştir.\n\nWrong Claims:\n- **Black Market Data Status**: Kaynak dışı idдиadır, çünkü Albion Online'nın resmi politikalarına veya ilgili bilgilere dayanılarak değil. Güvenilir olmayabilir.\n  \nRequired Fixes:\n1. Black Market Data Status'ü kaynaktan doğrulanmalı.\n2. Static data sources'un güncel olup olmadığı kontrol edilmeli ve gerekiyorsa güncelleme mekanizmaları yapılmalıdır.\n\nCommit Ready: No (Gerekli düzeltmeler var.)"
+}

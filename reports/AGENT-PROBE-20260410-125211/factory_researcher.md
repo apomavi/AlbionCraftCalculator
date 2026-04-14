@@ -1,0 +1,24 @@
+# Agent Probe - factory_researcher
+
+## crew
+factory
+
+## agent
+researcher
+
+## status
+success
+
+## started_at
+2026-04-10T12:53:11.322864+00:00
+
+## finished_at
+2026-04-10T12:53:27.829612+00:00
+
+## prompt
+Kısa test. data/logs/import_runs.csv için olası teknik sorunu ve minimal fix yaklaşımını söyle.
+
+## raw_output
+The CSV file indicates issues with incomplete processing and pending normalization tasks. To fix these, ensure full data completion and automate any necessary post-import processing steps based on the notes provided.
+
+## error

@@ -1,0 +1,24 @@
+# Agent Probe - report_researcher
+
+## crew
+report
+
+## agent
+researcher
+
+## status
+success
+
+## started_at
+2026-04-10T13:10:02.897660+00:00
+
+## finished_at
+2026-04-10T13:10:24.183623+00:00
+
+## prompt
+Kısa test. Albion Online Data Project resmi price verisi için kısa kaynak özeti çıkar. Mümkünse araç kullan.
+
+## raw_output
+Albion Online Data Project, Albion Online游戏中实时信息收集与分发的项目，通过可下载客户端监控网络来实现。该项目提供了一个API，用户可以通过它获取特定物品的价格数据。虽然官方网站上没有直接的价格数据链接，但该项目的客户端教程和相关论坛帖子表明，用户可以使用该工具来获取市场价格。此外，YouTube视频也提供了如何使用Albion Online Data API获取市场价格的信息。
+
+## error

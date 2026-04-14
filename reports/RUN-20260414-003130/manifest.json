@@ -1,0 +1,9 @@
+{
+  "run_id": "RUN-20260414-003130",
+  "request_file": "requests/REQ-0011-player-profile-models.md",
+  "started_at": "2026-04-13T21:31:30.816712+00:00",
+  "finished_at": "2026-04-13T21:44:46.657845+00:00",
+  "status": "fail",
+  "result_preview": "## Verdict\nFAIL\n\n## Evidence Used\n- The Coder Output indicates that no changes were made to the `models.py` file, despite the requirement to add new models (`PlayerProfile` and `LocationContext`) and update existing models (`CraftPricePoint` and `CraftCalculationRequest`).\n- The Tester Output confirms that the required changes are missing.\n\n## Risks\n- Without the necessary changes, the Craft Calculator will not support Phase 1 and Phase 1.5 features as intended.\n- This could lead to incomplete functionality and potential user frustration.\n\n## Required Fixes\n- Implement the `PlayerProfile` model with all specified fields and default values.\n- Implement the `LocationContext` model with all specified fields and default values.\n- Update the `CraftPricePoint` model to include the new `source` and `owner_id` fields without breaking existing functionality.\n- Update the `CraftCalculationRequest` model to include the new `player_profile` and `location_context` fields without breaking existing functionality.\n\n## Feedback Target\ncoder\n\n## Feedback Reason\nThe Coder Output indicates that no changes were made to the `models.py` file, despite the requirement to add new models (`PlayerProfile` and `LocationContext`) and update existing models (`CraftPricePoint` and `CraftCalculationRequest`). The Tester Output confirms that the required changes are missing. Please implement the necessary changes as specified in the project goal.\n\n## Commit Ready\nNO\n",
+  "runner": "scripts/run_request_phase.py"
+}

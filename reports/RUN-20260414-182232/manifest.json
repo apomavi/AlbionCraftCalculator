@@ -1,0 +1,9 @@
+{
+  "run_id": "RUN-20260414-182232",
+  "request_file": "requests/REQ-0011-player-profile-models.md",
+  "started_at": "2026-04-14T15:22:32.921130+00:00",
+  "finished_at": "2026-04-14T15:26:14.653825+00:00",
+  "status": "pass",
+  "result_preview": "## Verdict\nPASS\n\n## Evidence Used\n- The `PlayerProfile` and `LocationContext` models are correctly defined with the specified fields and default values.\n- The `CraftPricePoint` model has been updated to include the new `source` and `owner_id` fields with appropriate default values.\n- The `CraftCalculationRequest` model has been updated to include the new `player_profile` and `location_context` fields with appropriate default values.\n\n## Risks\nNone identified.\n\n## Required Fixes\nNone required.\n\n## Feedback Target\nnone\n\n## Feedback Reason\nThe changes meet all the specified requirements and have been tested successfully.\n\n## Commit Ready\nYES\n",
+  "runner": "scripts/run_request_phase.py"
+}

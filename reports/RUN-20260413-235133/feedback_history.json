@@ -1,0 +1,68 @@
+{
+  "feedback_history": [
+    {
+      "target": "none",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "tester",
+      "reason": "Tester output still contained raw tool-call data instead of a clean human-readable evidence summary."
+    },
+    {
+      "target": "none",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "none",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "none",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "none",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "none",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "none",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    }
+  ],
+  "retry_counts": {
+    "tester": 1,
+    "validator": 5
+  }
+}

@@ -1,0 +1,30 @@
+# Agent Probe - report_researcher
+
+## crew
+report
+
+## agent
+researcher
+
+## status
+success
+
+## started_at
+2026-04-10T12:52:25.916580+00:00
+
+## finished_at
+2026-04-10T12:52:52.914606+00:00
+
+## prompt
+Kısa test. Albion Online Data Project resmi price verisi için kısa kaynak özeti çıkar. Mümkünse araç kullan.
+
+## raw_output
+Albion Online Data Project resmi price verisi için şu kaynaklar kullanılabilir:
+1. https://albiononline-data.com/  
+   Bu site üzerinden REST API kullanarak anlık market ve altın verilerini programlı şekilde sorgulayabilirsiniz.
+2. https://www.albionfreemarket.com/pricecheck  
+   Yerleşik akış işlevini kullanarak Amerika, Avrupa ve Asya sunucularında tüm Albion Market fiyatlarını karşılaştırabiliriz.
+
+Bu kaynaklar, Albion Online Data Project'te resmi olarak sağlanan verilere erişim sağlar.
+
+## error

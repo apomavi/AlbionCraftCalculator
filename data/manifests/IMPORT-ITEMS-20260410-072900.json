@@ -1,0 +1,14 @@
+{
+  "import_id": "IMPORT-ITEMS-20260410-072900",
+  "dataset_name": "city_bonuses_reference_pg",
+  "source_type": "static_file",
+  "source_path": "reference/city_bonuses.csv",
+  "raw_path": "data/raw/city_bonuses_reference_pg/IMPORT-ITEMS-20260410-072900/city_bonuses.csv",
+  "processed_path": null,
+  "db_target": "postgres",
+  "postgres_dsn": "postgresql://postgres:postgres@localhost:5432/albion_factory",
+  "status": "skeleton_only",
+  "notes": "Static importer iskeleti hazır. DB upsert katmanı sonraki adımda eklenecek.",
+  "started_at": "2026-04-10T07:29:00.414911+00:00",
+  "finished_at": "2026-04-10T07:29:00.420109+00:00"
+}

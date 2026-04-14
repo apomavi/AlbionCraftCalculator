@@ -1,97 +1,108 @@
-## Albion Online Ekonomi Veri Araştırması Raporu
+# Research Report: Craft Calculator Phase 6 — Validation and Probe
 
-### 1. Source Inventory
+## Source Inventory
 
-*   **Albion Online Data Project (AODP) API:** Oyun içi güncel pazar verileri, eşya bilgileri ve tarifler için birincil kaynak.
-*   **ao-bin-dumps (GitHub):** Oyunun statik verilerini (eşya ID'leri, statlar, zanaat/rafine tarifleri) içeren, oyun güncellemeleriyle güncellenen bir depo.
-*   **Albion Online Wiki:** Oyun mekanikleri, eşya detayları ve genel bilgiler için referans kaynak.
-*   **Oyun İçi Gözlem / Kullanıcı Girdileri:** Kara borsa verileri gibi resmi olarak sunulmayan veriler için dolaylı bilgi kaynağı veya doğrudan kullanıcıdan alınacak veriler.
+*   **`scripts/probe_agents.py`**: This file is designated for the implementation of the validation, probe, and scoring logic. It currently serves as a target for development rather than containing pre-existing research findings on these specific topics.
+*   **Provided Lead Plan**: This document outlines the project's scope, objectives, required agents, constraints (maintain request/run/report pipeline), and success criteria (defined validation criteria, established probe strategy, implemented scoring mechanism, full functional coverage).
 
-### 2. Live Data Sources
+## Findings
 
-*   **AODP API - Market Data:** Belirli bir eşyanın farklı şehirlerdeki anlık satış fiyatları, arz ve talep miktarları. (Canlı)
-    *   *Ne işe yarar:* Market flip, kar marjı ve fiyat trendleri analizi.
-*   **AODP API - Item Data:** Eşyaların güncel statları, seviyeleri, ağırlıkları. (Canlı/Statik - Oyun güncellemeleriyle değişir)
-    *   *Ne işe yarar:* Eşya bazlı üretim ve taşıma maliyetlerinin hesaplanması.
-*   **AODP API - Crafting/Refining Recipes (Girdi/Çıktı Oranları):** Belirli bir eşyayı üretmek veya rafine etmek için gereken hammaddeler ve çıkan ürün miktarı. (Canlı/Statik - Oyun güncellemeleriyle değişir)
-    *   *Ne işe yarar:* Üretim maliyetlerinin ve verimliliğin hesaplanması.
+The objective is to continuously measure the accuracy of Craft Calculator outputs using agent probes and tests. This requires establishing a clear validation, probe, and scoring strategy within the existing `request/run/report` pipeline.
 
-### 3. Static Data Sources
+### 1. Validation Criteria
 
-*   **ao-bin-dumps - Item Definitions:** Eşyaların ID'leri, isimleri, türleri, temel özellikleri ve ikonları. (Statik)
-    *   *Ne işe yarar:* Eşyaların oyun içindeki temel tanımlayıcıları ve özellikleri.
-*   **ao-bin-dumps - Crafting/Refining Recipes (Temel Tarif Yapısı):** Zanaat ve rafine işlemleri için gereken hammaddelerin listesi, kullanılan istasyon ve gerekli beceri seviyeleri. (Statik)
-    *   *Ne işe yarar:* Üretim zincirlerinin ve temel tariflerin anlaşılması.
-*   **Albion Wiki / Oyun İçi Kurallar:** Şehir bonusları, focus sistemi etkileri, premium avantajları, pazar vergileri ve işlem ücretleri gibi oyun mekaniklerinin detayları. (Statik)
-    *   *Ne işe yarar:* Ekonomik hesaplamalarda kullanılacak kural ve bonusların belirlenmesi.
+To ensure the accuracy and reliability of the Craft Calculator's outputs, the following validation criteria should be established:
 
-### 4. Rule Tables
+*   **Known Item Fixtures:**
+    *   **Definition:** A curated set of specific crafting recipes or item calculations with pre-determined, deterministic, and verified correct outputs.
+    *   **Purpose:** To serve as ground truth for verifying the basic functional correctness of the calculator for common or critical scenarios.
+    *   **Examples:** Expected cost of crafting a 'Basic Sword', profit margin for 'Advanced Potion', time taken for 'Masterwork Armor'.
 
-*   **Şehir Bonusları Tablosu:** Her şehir için üretim, rafine veya ticaret bonuslarının yüzdesel değerleri. (Statik)
-    *   *Ne işe yarar:* Belirli şehirlerdeki üretim/rafine karlılığını etkiler.
-*   **Pazar Ücretleri Tablosu:** Şehir bazında satış vergisi (tax) ve kurulum ücreti (setup fee) oranları. (Statik)
-    *   *Ne işe yarar:* Pazar işlemlerindeki maliyetleri belirler.
-*   **Focus Etki Tablosu:** Focus kullanıldığında zanaat/rafine verimliliğindeki artış oranları ve Focus tüketim hızları. (Statik)
-    *   *Ne işe yarar:* Focus'lu üretimin karlılığını hesaplar.
-*   **Premium Etki Tablosu:** Premium aktifken uygulanan vergi indirimleri, üretim bonusları vb. oranlar. (Statik)
-    *   *Ne işe yarar:* Premium oyuncular için ekonomik hesaplamaları ayarlar.
+*   **Expected Profitability Sanity Checks:**
+    *   **Definition:** Rules based on domain knowledge to check if the calculated profitability of a craft falls within acceptable, logical bounds. This goes beyond mere calculation to encompass economic sense within the game/system.
+    *   **Purpose:** To catch calculations that might be arithmetically correct but economically nonsensical or exploitable.
+    *   **Examples:** A craft should not yield significantly negative profit if market prices are stable; profit margins should generally align with item rarity or complexity.
 
-### 5. User Input Tables
+*   **Consistency and Determinism:**
+    *   **Definition:** The calculator must produce identical outputs for identical inputs, regardless of when the calculation is performed (assuming no external data drift, like market prices, if applicable).
+    *   **Purpose:** To ensure reliability and predictability of the core calculation engine.
 
-*   **Oyuncu Bilgileri:** Oyuncu adı, seçtiği ana şehir, Premium durumu (aktif/pasif). (Kullanıcı Girdisi)
-    *   *Ne işe yarar:* Kişiselleştirilmiş analizler ve Premium etkilerinin uygulanması.
-*   **Mevcut Kaynaklar:** Oyuncunun elindeki hammadde miktarları ve maliyetleri. (Kullanıcı Girdisi)
-    *   *Ne işe yarar:* Üretim planlaması ve mevcut stokla yapılabilecek işlemlerin belirlenmesi.
-*   **Hedeflenen Ürün/Eşya:** Oyuncunun üretmek veya satmak istediği eşya. (Kullanıcı Girdisi)
-    *   *Ne işe<bos>:* Analizlerin belirli bir eşyaya odaklanmasını sağlar.
-*   **Focus Miktarı:** Oyuncunun kullanmak istediği Focus miktarı. (Kullanıcı Girdisi)
-    *   *Ne işe yarar:* Focus'lu üretim karlılık hesaplamaları için girdi.
+*   **Range and Constraint Adherence:**
+    *   **Definition:** Outputs must fall within predefined, logical ranges (e.g., crafting time > 0, resource costs are non-negative, derived values do not exceed system limits).
+    *   **Purpose:** To validate that the calculator's outputs respect the physical or economic constraints of the system it models.
 
-### 6. Recipe Sources
+### 2. Probe Strategy
 
-*   **AODP API:** Canlı ve güncel girdi/çıktı oranlarını çekmek için kullanılır. Özellikle oyun güncellemeleri sonrası kritik. (Canlı)
-    *   *Ne işe yarar:* Güncel üretim ve rafine verimliliği.
-*   **ao-bin-dumps (GitHub):** Eşyaların üretim ve rafine edilmesi için gereken temel hammaddeleri, kullanılan istasyonları ve statik tarif yapısını içerir. (Statik)
-    *   *Ne işe yarar:* Tariflerin temel yapısını ve gereken girdileri öğrenme.
+The strategy for probing agents will involve using domain-specific prompts to evaluate their understanding and the calculator's application in realistic scenarios.
 
-### 7. Black Market Data Status
+*   **Domain-Specific Prompts:**
+    *   **Definition:** Carefully crafted natural language queries that simulate user interactions or specific crafting scenarios within the game/system's context.
+    *   **Purpose:** To test the agent's ability to interpret complex requests, leverage the Craft Calculator, and provide relevant, actionable answers.
+    *   **Prompt Categories:**
+        *   **Cost/Profit Analysis:** "What is the most profitable item to craft with [resource A, resource B]?"
+        *   **Resource Optimization:** "If I have X units of item Y, how many Z can I craft?"
+        *   **Comparative Analysis:** "Compare the crafting cost of Item P versus Item Q."
+        *   **Scenario-Based:** "Estimate the profit if I craft 100 units of [item] during a market event where [condition]."
 
-*   **Veri Kaynağı:** Resmi bir AODP API'si veya kamuya açık bir veri deposu bulunmamaktadır. (Mevcut Değil)
-*   **Erişim Yöntemi:** Kara borsa verileri için doğrudan veri çekme imkanı yok. Dolaylı analizler (oyuncu gözlemleri, belirli eşyaların kara borsadaki genel fiyat aralığı tahminleri) veya kullanıcıdan alınacak manuel girdiler ile sınırlı kalınabilir. (Dolaylı / Kullanıcı Girdisi)
-    *   *Ne işe yarar:* Kara borsa alım/satım kararlılığını tahmin etmek zordur, manuel veri girişi gerektirir.
+*   **Agent Response Evaluation:**
+    *   **Accuracy:** Does the agent's answer correctly reflect the Craft Calculator's output?
+    *   **Relevance:** Does the answer directly address the user's prompt?
+    *   **Completeness:** Does the answer include all necessary information (e.g., costs, profits, resources, warnings)?
+    *   **Interpretation:** Did the agent correctly understand quantities, units, and conditional modifiers in the prompt?
 
-### 8. Minimum Viable Data Model
+*   **Iterative and Comprehensive Probing:**
+    *   Develop a diverse and expanding library of domain prompts.
+    *   Regularly run probes to detect regressions or drift in agent performance.
 
-*   **Items:** item_id, name, type, weight, stackable (id, isim, tip, ağırlık, yığınlanabilirlik) - (Statik)
-*   **Recipes:** recipe_id, output_item_id, input_item_id, input_amount, output_amount, crafting_station (tarife_id, çıktı_eşya_id, girdi_eşya_id, girdi_miktarı, çıktı_miktarı, üretim_istasyonu) - (Statik)
-*   **CityMarketPrices:** city, item_id, buy_price, sell_price, timestamp (şehir, eşya_id, alış_fiyatı, satış_fiyatı, zaman damgası) - (Canlı)
-*   **CityBonuses:** city, bonus_type, bonus_value (şehir, bonus_tipi, bonus_değeri) - (Statik)
-*   **MarketFees:** city, tax_rate, setup_fee (şehir, vergi_oranı, kurulum_ücreti) - (Statik)
-*   **PlayerInfo:** player_name, is_premium, current_city, focus_points (oyuncu_adı, premium_durumu, mevcut_şehir, focus_puanı) - (Kullanıcı Girdisi)
+### 3. Score Strategy
 
-### 9. MVP Data Collection Plan
+A scoring mechanism is essential for quantifying agent performance and identifying "weak agents."
 
-1.  **Statik Veri Çekimi (ao-bin-dumps):**
-    *   `ao-bin-dumps` deposundan `items.json` ve `recipes.json` gibi dosyaları indir.
-    *   Bu verileri kullanarak `Items` ve `Recipes` tablolarını oluştur.
-    *   *Ne işe yarar:* Temel eşya ve tarif bilgilerini sisteme dahil etme.
-2.  **Şehir ve Pazar Kuralları (Wiki/Oyun İçi Gözlem):**
-    *   Albion Wiki ve oyun içi gözlemlerle şehir bonuslarını, pazar vergilerini ve işlem ücretlerini belirle.
-    *   `CityBonuses` ve `MarketFees` tablolarını doldur.
-    *   *Ne işe yarar:* Ekonomik kuralları ve maliyetleri sisteme entegre etme.
-3.  **Canlı Pazar Verisi Erişimi (AODP API):**
-    *   AODP API'sini kullanarak belirli şehirlerdeki eşyaların güncel alım/satım fiyatlarını çek.
-    *   `CityMarketPrices` tablosunu anlık veya periyodik olarak güncelle.
-    *   *Ne işe yarar:* Güncel piyasa koşullarını analiz edebilme.
-4.  **Kullanıcı Girdisi Mekanizması:**
-    *   Oyuncunun Premium durumunu, mevcut şehrini ve focus puanını girebileceği bir arayüz oluştur.
-    *   *Ne işe yarar:* Kişiselleştirilmiş hesaplamalar için gerekli girdileri sağlama.
-5.  **Kara Borsa Verisi (Manuel Giriş):**
-    *   Kara borsa için doğrudan veri kaynağı olmadığından, kullanıcıdan manuel olarak tahmini alım/satım fiyatları veya kar marjı bilgisi alma opsiyonu ekle.
-    *   *Ne işe yarar:* Sınırlı da olsa kara borsa analizine dahil edebilme.
+*   **Metric Definition:** Scores should be derived from the success rate of validation criteria and probe tests.
+    *   **Fixture Score:** Percentage of known item fixtures passing validation.
+    *   **Profitability Sanity Check Score:** Percentage of profitability checks passing.
+    *   **Domain Prompt Score:** A composite score reflecting accuracy, relevance, and completeness of responses to domain prompts. This might require a separate evaluation layer (human or oracle agent).
+    *   **Consistency Score:** Measure of output stability across multiple runs of identical probes.
 
-### 10. Sources
+*   **Weak Agent Detection:**
+    *   **Thresholds:** Define minimum acceptable score thresholds for each metric. Agents falling below these thresholds are flagged as weak.
+    *   **Consolidated Score:** A weighted average of individual metric scores can provide an overall agent performance indicator.
+    *   **Failure Analysis:** Log detailed reasons for score failures (e.g., "Incorrect profit calculation for recipe X," "Agent failed to interpret quantity '100+' in prompt Y").
 
-*   **Albion Online Data Project (AODP) API:** [https://www.albion-online.com/en/data](https://www.albion-online.com/en/data) (Resmi - API dokümantasyonu gereklidir)
-*   **ao-bin-dumps GitHub Repository:** [https://github.com/brodyle/ao-bin-dumps](https://github.com/brodyle/ao-bin-dumps) (GitHub)
-*   **Albion Online Wiki:** [https://wiki.albiononline.com/wiki/Main_Page](https://wiki.albiononline.com/wiki/Main_Page) (Referans)
+*   **Pipeline Integration:** Probe results and calculated scores must be logged and reported within the existing `request/run/report` cycle, potentially as part of the final `report` or a dedicated performance summary.
+
+## Constraints
+
+*   **Request/Run/Report Pipeline Preservation:** All new validation, probing, and scoring functionalities must integrate seamlessly with the existing pipeline structure without disrupting its fundamental operation. The `probe` and `score` steps will logically follow `run` and precede or augment the `report`.
+*   **Domain Specificity:** The validation criteria, probe prompts, and scoring logic must be tailored to the specific domain and mechanics of the target Craft Calculator.
+
+## Implementation Notes
+
+*   **`scripts/probe_agents.py` Role:** This file will be the central hub for implementing:
+    *   **Data Management:** Loading and managing `known_item_fixtures` and `expected_profitability_checks` (e.g., from YAML or JSON files).
+    *   **Validation Logic:** Functions to execute fixture checks, sanity checks, and consistency tests against calculator outputs.
+    *   **Probe Execution:** Logic to construct and send domain-specific prompts to the agent and capture responses.
+    *   **Response Evaluation:** Functions to score agent responses based on accuracy, relevance, and completeness.
+    *   **Scoring Engine:** Logic to aggregate individual metric scores into overall agent performance and identify weak agents.
+    *   **Reporting Integration:** Functions to log probe results and scores, feeding into the overall `manifest/report` system.
+
+*   **Data Formats:**
+    *   **Fixtures:** Use structured formats like YAML or JSON for `known_item_fixtures`. Each fixture should include input parameters, expected outputs, and potentially metadata like item ID or recipe name.
+    *   **Prompts:** Store domain prompts in a categorized manner, perhaps with associated expected outcomes or evaluation criteria.
+
+*   **Modularity and Extensibility:**
+    *   Design the validation, probing, and scoring modules to be easily extendable. New item types, recipes, or validation rules should be straightforward to add.
+    *   The scoring mechanism should allow for configurable weights for different metrics.
+
+*   **Prompt Engineering Best Practices:**
+    *   Develop a strategy for generating diverse prompts that cover edge cases, common scenarios, and complex interactions.
+    *   Consider using prompt templates to ensure consistency and facilitate the generation of many related prompts.
+
+*   **Feedback Loop:** Ensure that probe results and agent performance scores are clearly communicated and actionable for the development team responsible for improving the Craft Calculator and its associated agents.
+
+## Sources
+
+*   General principles of software testing and quality assurance.
+*   Methodologies for validating machine learning models and AI agents, particularly in task-oriented domains.
+*   Research and best practices in prompt engineering and agent evaluation frameworks.
+*   The existing documentation and codebase structure related to the Craft Calculator's `request/run/report` pipeline.

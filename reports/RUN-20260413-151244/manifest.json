@@ -1,0 +1,9 @@
+{
+  "run_id": "RUN-20260413-151244",
+  "request_file": "requests/REQ-0011-player-profile-models.md",
+  "started_at": "2026-04-13T12:12:44.484536+00:00",
+  "finished_at": "2026-04-13T12:13:38.993335+00:00",
+  "status": "failed",
+  "error": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+  "runner": "scripts/run_request_phase.py"
+}

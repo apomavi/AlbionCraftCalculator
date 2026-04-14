@@ -1,0 +1,68 @@
+{
+  "feedback_history": [
+    {
+      "target": "researcher",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "tester",
+      "reason": "Tester output still contained raw tool-call data instead of a clean human-readable evidence summary."
+    },
+    {
+      "target": "researcher",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "researcher",
+      "reason": "The researcher agent crashed or returned an empty response, which indicates a critical error in the research phase. The Validator MUST mark this run as FAIL and set Feedback Target to 'researcher' so it can retry."
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "researcher",
+      "reason": "Validator output did not follow required structured format"
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "researcher",
+      "reason": "The researcher agent crashed or returned an empty response, which is a critical error. The Validator MUST mark this run as FAIL and set Feedback Target to 'researcher' so it can retry."
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "researcher",
+      "reason": "The researcher agent crashed or returned an empty response, which is a critical error. The Validator MUST mark this run as FAIL and set Feedback Target to 'researcher' so it can retry."
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    },
+    {
+      "target": "researcher",
+      "reason": "The researcher agent crashed or returned an empty response, which led to the failure of this run. The Validator must mark this run as FAIL and set Feedback Target to 'researcher' so it can retry."
+    },
+    {
+      "target": "validator",
+      "reason": "You failed to use the required markdown headers (Verdict, Evidence Used, Risks, Required Fixes, Feedback Target, Feedback Reason, Commit Ready). You must rewrite your evaluation using EXACTLY these headers."
+    }
+  ],
+  "retry_counts": {
+    "tester": 1,
+    "validator": 5
+  }
+}

@@ -1,0 +1,68 @@
+lead_task:
+  description: >
+    İstek: {ops_request}
+    İşi sınıflandır, gerekli alt akışları belirle ve kısa operasyon planı çıkar.
+  expected_output: >
+    Kısa lead çıktısı.
+    Zorunlu başlıklar:
+    - Scope
+    - Required Agents
+    - Constraints
+    - Success Criteria
+    - Next Step
+  agent: lead_manager
+
+research_task:
+  description: >
+    İstek: {ops_request}
+    Gerekli repo/doküman/web bağlamını kısa şekilde topla.
+  expected_output: >
+    Kısa research çıktısı.
+    Zorunlu başlıklar:
+    - Source Inventory
+    - Findings
+    - Repo Evidence
+    - Web Evidence
+    - Recommended Next Step
+  agent: researcher
+
+data_task:
+  description: >
+    İstek: {ops_request}
+    Gerekirse tanımlı veri kaynağını belirtilen hedefe kaydet.
+  expected_output: >
+    Kısa data collection çıktısı.
+    Zorunlu başlıklar:
+    - Preconditions
+    - Safety Checks
+    - Blocking Issues
+    - Next Action
+    - Saved Targets
+  agent: data_collector
+
+test_task:
+  description: >
+    İstek: {ops_request}
+    Uygun komutları çalıştır ve teknik test çıktısı üret.
+  expected_output: >
+    Kısa test çıktısı.
+    Zorunlu başlıklar:
+    - Commands
+    - Evidence
+    - Findings
+    - Verdict
+  agent: tester
+
+validation_task:
+  description: >
+    İstek: {ops_request}
+    Research/data/test çıktılarının doğruluğunu kontrol edip verdict ver.
+  expected_output: >
+    Kısa validation çıktısı.
+    Zorunlu başlıklar:
+    - Verdict
+    - Evidence Used
+    - Risks
+    - Required Fixes
+    - Commit Ready
+  agent: validator

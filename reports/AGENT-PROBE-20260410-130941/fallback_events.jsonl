@@ -1,0 +1,15 @@
+{"ts": "2026-04-10T13:10:02.906495+00:00", "kind": "fallback", "message": "trying model: gemini/gemini-2.5-flash-lite"}
+{"ts": "2026-04-10T13:10:03.224628+00:00", "kind": "fallback", "message": "quota/rate-limit on gemini/gemini-2.5-flash-lite; switching to next model. error=429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/"}
+{"ts": "2026-04-10T13:10:03.226629+00:00", "kind": "fallback", "message": "model cooldown set: gemini/gemini-2.5-flash-lite for 900s"}
+{"ts": "2026-04-10T13:10:03.227629+00:00", "kind": "fallback", "message": "trying model: ollama/qwen2.5-coder:14b"}
+{"ts": "2026-04-10T13:10:14.948024+00:00", "kind": "fallback", "message": "trying model: ollama/qwen2.5-coder:14b"}
+{"ts": "2026-04-10T13:10:46.422750+00:00", "kind": "fallback", "message": "trying model: gemini/gemini-2.5-flash-lite"}
+{"ts": "2026-04-10T13:10:46.617033+00:00", "kind": "fallback", "message": "quota/rate-limit on gemini/gemini-2.5-flash-lite; switching to next model. error=429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/"}
+{"ts": "2026-04-10T13:10:46.618084+00:00", "kind": "fallback", "message": "model cooldown set: gemini/gemini-2.5-flash-lite for 900s"}
+{"ts": "2026-04-10T13:10:46.618603+00:00", "kind": "fallback", "message": "trying model: ollama/qwen2.5-coder:14b"}
+{"ts": "2026-04-10T13:10:53.082936+00:00", "kind": "fallback", "message": "trying model: ollama/qwen2.5-coder:14b"}
+{"ts": "2026-04-10T13:11:47.067155+00:00", "kind": "fallback", "message": "trying model: gemini/gemini-2.5-flash-lite"}
+{"ts": "2026-04-10T13:11:47.336841+00:00", "kind": "fallback", "message": "quota/rate-limit on gemini/gemini-2.5-flash-lite; switching to next model. error=429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/"}
+{"ts": "2026-04-10T13:11:47.338924+00:00", "kind": "fallback", "message": "model cooldown set: gemini/gemini-2.5-flash-lite for 900s"}
+{"ts": "2026-04-10T13:11:47.339441+00:00", "kind": "fallback", "message": "trying model: ollama/qwen2.5-coder:14b"}
+{"ts": "2026-04-10T13:13:44.109315+00:00", "kind": "fallback", "message": "trying model: ollama/qwen2.5-coder:14b"}

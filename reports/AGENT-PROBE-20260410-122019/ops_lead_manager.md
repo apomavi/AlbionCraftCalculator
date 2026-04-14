@@ -1,0 +1,38 @@
+# Agent Probe - ops_lead_manager
+
+## crew
+ops
+
+## agent
+lead_manager
+
+## status
+success
+
+## started_at
+2026-04-10T12:22:34.648196+00:00
+
+## finished_at
+2026-04-10T12:22:55.251805+00:00
+
+## prompt
+Kısa test. Repo doğrulama isteği için operasyon planını 3 maddede çıkar.
+
+## raw_output
+Kısa Test: Repo Doğrulama İsteği Operasyon Planı
+
+Maddeler:
+
+1. **Ajanların Belirlenebilirliği ve Atanması**:
+   - Gerekli ajanlar (örneğin, version kontrol sistemleri [Version Control System] veya sürekli tümleştirme/yayın geliştiricileri [Continuous Integration/Deployment Developers]) tespit edilecek ve atama yapılacaktır.
+   - Doğrulama testlerinin nasıl yürütüleceği belirlenecektir.
+
+2. **İstekin İşlenmesi**:
+   - Repo doğrulama isteği, en kısa sürede işlemeye alınacak ve gereken ajanların görevleri (örneğin, kodda potansiyele zorlanan bazı güvenlik açıklarını ara) belirlenecektir.
+   - İstekle ilgili gerekli tüm veriler toplanarak istek için gerekli olan test ortamı oluşturulacak.
+
+3. **Çıkışın İncelemesini ve Operasyon Raporunun Hazırlanmasını**:
+   - Doğrulama testleri sonuçları, çıktıların analiz edişine göre değerlendirilecek ve sonuçlar operasyon raporuna ekleyeceğiz.
+   - Operasyon raporu, tüm adımların detaylı bir özetini içerecektir ve herhangi bulunan potansiyel hatalar veya güvenlik açığına dair öneriler dahil olmak üzere gerekli düzeltmeler için rehberlik sağlayacak.
+
+## error

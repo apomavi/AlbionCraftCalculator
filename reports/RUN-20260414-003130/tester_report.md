@@ -1,0 +1,1 @@
+The `src/albion_factory/craftcalc/models.py` file is missing the required changes for Phase 1 and Phase 1.5 features.
