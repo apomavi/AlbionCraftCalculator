@@ -1,9 +1,0 @@
-{
-  "run_id": "RUN-20260413-170716",
-  "request_file": "requests/REQ-0011-player-profile-models.md",
-  "started_at": "2026-04-13T14:07:16.406038+00:00",
-  "finished_at": "2026-04-13T14:12:40.847633+00:00",
-  "status": "failed",
-  "error": "Invalid response from LLM call - None or empty.",
-  "runner": "scripts/run_request_phase.py"
-}

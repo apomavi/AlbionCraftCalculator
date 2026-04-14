@@ -1,9 +1,0 @@
-{
-  "run_id": "RUN-20260413-161344",
-  "request_file": "requests/REQ-0011-player-profile-models.md",
-  "started_at": "2026-04-13T13:13:44.122254+00:00",
-  "finished_at": "2026-04-13T13:19:22.911904+00:00",
-  "status": "fail",
-  "result_preview": "## Verdict\nFAIL\n\n## Evidence Used\n:\n- Research Output: Described the current state of `models.py` and identified the required changes.\n- Data Collector Output: Provided target data for new models and updates to existing models.\n- Coder Output: Claimed that no changes were necessary, but this contradicts the requirements.\n- Tester Output: Confirmed that the file does not meet the Phase 1 and Phase 1.5 feature requirements.\n\n## Risks\n:\n- The absence of required models (`PlayerProfile` and `LocationContext`) and fields (`source`, `owner_id`, `player_profile`, `location_context`) may lead to incomplete functionality for the Craft Calculator.\n- Existing features might break if the changes are not implemented correctly.\n\n## Required Fixes\n:\n1. Implement the `PlayerProfile` model with the specified fields and default values.\n2. Implement the `LocationContext` model with the specified fields and default values.\n3. Update the `CraftPricePoint` model to include the `source` and `owner_id` fields.\n4. Update the `CraftCalculationRequest` model to include the `player_profile` and `location_context` fields.\n\n## Feedback Target\nnone\n\n## Feedback Reason\nValidator output did not follow required structured format\n\n## Commit Ready\nNO\n",
-  "runner": "scripts/run_request_phase.py"
-}

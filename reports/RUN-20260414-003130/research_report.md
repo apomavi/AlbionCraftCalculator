@@ -1,1 +1,0 @@
-The `CraftRecipe` model in the `src/albion_factory/craftcalc/models.py` file has a default value for the `output_quantity` field set to 1, and it includes field validation to ensure that the quantity is greater than 0.

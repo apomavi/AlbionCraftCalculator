@@ -1,3 +1,0 @@
-Thought: I should start by reviewing the current models in `src/albion_factory/craftcalc/models.py` to understand their structure and dependencies. This will help me ensure that the new changes do not break existing functionalities.
-
-Action: Review the current models in `src/albion_factory/craftcalc/models.py`. Identify any fields that might be affected by new model inputs. Provide a report summarizing findings.

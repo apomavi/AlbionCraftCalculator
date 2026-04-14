@@ -1,1 +1,0 @@
-The file `src/albion_factory/craftcalc/models.py` does not meet the requirements for Phase 1 and Phase 1.5 features as it is missing the necessary classes and fields such as `PlayerProfile`, `LocationContext`, `source`, `owner_id`, `player_profile`, and `location_context`.

@@ -1,1 +1,0 @@
-No specific requirements for updating `CraftPricePoint` and `CraftCalculationRequest` are available from the repository or general web sources. Without more detailed information about changes needed, please specify any additional fields or constraints that should be included.

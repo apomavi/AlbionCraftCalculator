@@ -1,1 +1,0 @@
-Repo icindeki mevcut degisikligi test et ve dogrula

@@ -1,8 +1,0 @@
-{
-  "run_id": "RUN-20260411-022417",
-  "request_file": "requests/REQ-0005.md",
-  "started_at": "2026-04-10T23:24:17.093390",
-  "finished_at": "2026-04-10T23:26:57.754608",
-  "status": "failed",
-  "error": "Invalid response from LLM call - None or empty."
-}

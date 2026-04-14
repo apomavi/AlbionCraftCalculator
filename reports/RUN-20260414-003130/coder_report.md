@@ -1,1 +1,0 @@
-The file `src/albion_factory/craftcalc/models.py` has been successfully read and analyzed. No changes were required as the content already meets the specified requirements.

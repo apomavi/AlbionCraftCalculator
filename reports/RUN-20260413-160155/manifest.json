@@ -1,9 +1,0 @@
-{
-  "run_id": "RUN-20260413-160155",
-  "request_file": "requests/REQ-0011-player-profile-models.md",
-  "started_at": "2026-04-13T13:01:55.955897+00:00",
-  "finished_at": "2026-04-13T13:09:37.962079+00:00",
-  "status": "fail",
-  "result_preview": "## Verdict\nFAIL\n\n## Evidence Used\nNo structured evidence provided\n\n## Risks\nValidator returned unstructured risks section\n\n## Required Fixes\nProvide validator output in required contract format\n\n## Feedback Target\nnone\n\n## Feedback Reason\nValidator output did not follow required structured format\n\n## Commit Ready\nNO\n",
-  "runner": "scripts/run_request_phase.py"
-}

@@ -1,9 +1,0 @@
-{
-  "feedback_history": [
-    {
-      "target": "none",
-      "reason": "Validator output did not follow required structured format"
-    }
-  ],
-  "retry_counts": {}
-}

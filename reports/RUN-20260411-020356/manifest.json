@@ -1,8 +1,0 @@
-{
-  "run_id": "RUN-20260411-020356",
-  "request_file": "requests/REQ-0005.md",
-  "started_at": "2026-04-10T23:03:56.585109",
-  "finished_at": "2026-04-10T23:04:24.704444",
-  "status": "failed",
-  "error": "404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"
-}

@@ -1,8 +1,0 @@
-{
-  "run_id": "RUN-20260409-120110",
-  "request_file": "requests/REQ-0001.md",
-  "started_at": "2026-04-09T09:01:10.259178",
-  "finished_at": "2026-04-09T09:01:27.490618",
-  "status": "failed",
-  "error": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
-}

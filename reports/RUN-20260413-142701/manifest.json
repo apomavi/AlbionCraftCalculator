@@ -1,9 +1,0 @@
-{
-  "run_id": "RUN-20260413-142701",
-  "request_file": "requests/REQ-0011-player-profile-models.md",
-  "started_at": "2026-04-13T11:27:01.371352+00:00",
-  "finished_at": "2026-04-13T11:29:36.596108+00:00",
-  "status": "success",
-  "result_preview": "retry_tester",
-  "runner": "scripts/run_request_phase.py"
-}
